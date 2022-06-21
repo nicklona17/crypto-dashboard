@@ -8,7 +8,11 @@ const CurrencyConverter = () => {
     const [chosenPrimaryCurrency, setChosenPrimaryCurrency] = useState('BTC');
     const [chosenSecondaryCurrency, setChosenSecondaryCurrency] = useState('BTC');
     const [amount, setAmount] = useState(1);
-    const [exchangeRate, setExchangeRate] = useState(0);
+    const [exchangedData, setExchangedData] = useState({
+        primaryCurrency: 'BTC',
+        secondaryCurrency: 'BTC',
+        exchangeRate: 0
+    });
     const [result, setResult] = useState(0);
 
     const convert = () => {
@@ -17,21 +21,24 @@ const CurrencyConverter = () => {
             url: 'https://alpha-vantage.p.rapidapi.com/query',
             params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency},
             headers: {
-              'X-RapidAPI-Key': '6a213562dfmsh8c1de1ab92b2546p11bd12jsn20444cad7fe7',
+              'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
               'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
             }
           };
           
           axios.request(options).then((response) => {
               console.log(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']);
-              setExchangeRate(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']);
               setResult(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'] * amount);
+              setExchangedData({
+                primaryCurrency: chosenPrimaryCurrency,
+                secondaryCurrency: chosenSecondaryCurrency,
+                exchangeRate: response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']
+            });
           }).catch((error) => {
               console.error(error);
           });
     }
 
-    console.log(exchangeRate);
     return (
       <div className="currency-converter">
         <h2>Currency Converter</h2>
@@ -67,9 +74,7 @@ const CurrencyConverter = () => {
         </div>
         
         <ExchangeRate
-            exchangeRate={exchangeRate}
-            chosenPrimaryCurrency={chosenPrimaryCurrency}
-            chosenSecondaryCurrency={chosenSecondaryCurrency}
+            exchangedData={exchangedData}
         />
       </div>
     );
