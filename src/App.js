@@ -6,8 +6,11 @@ import ExchangeRate from './components/exchangeRate/ExchangeRate';
 const App = () => {
   return (
     <div className='app'>
-      <CurrencyConverter />
-      <NewsFeed />
+      <h1 id="page-title">Crypto Dashboard</h1>
+      <div className='app-wrapper'>
+        <CurrencyConverter />
+        <NewsFeed />
+      </div>
     </div>
   );
 }

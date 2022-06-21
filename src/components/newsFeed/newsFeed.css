@@ -1,3 +1,21 @@
 .news-feed {
-    background-color: blue;
+    background-color: rgb(184, 204, 231);
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    max-width: 800px;
+    font-size: 14px;
+}
+
+a {
+    color: rgb(58, 84, 117);
+}
+
+a:hover {
+    color: rgb(92, 92, 92);
+    cursor: pointer;
+}
+
+p {
+    margin: 5px 0 5px 0;
 }
