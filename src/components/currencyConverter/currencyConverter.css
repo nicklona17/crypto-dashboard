@@ -21,6 +21,10 @@ h2 {
     text-align: end;
 }
 
+.primary-currency-input-row {
+    margin-bottom: 5px;
+}
+
 button {
     border: none;
     margin: 10px;
@@ -36,7 +40,6 @@ button:hover {
 }
 
 input {
-    margin: 0 5px;
     text-indent: 2px;
     box-shadow: inset -1px -1px 0px rgba(255, 255, 255, 0.6), inset 1px 1px 0px rgba(0, 0, 0, 0.6);
 }
@@ -57,4 +60,11 @@ select {
         display: flex;
         flex-direction: column;
     }
+    tr {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    
 }
